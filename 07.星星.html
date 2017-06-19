@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/konva/1.6.3/konva.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+
+    </div>
+</body>
+<script>
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    var stage = new Konva.Stage({
+        container: 'container',
+        width: width,
+        height: height
+    });
+    var layer = new Konva.Layer();
+    var circle1 = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 300,
+        stroke: '#ccc',
+        strokeWidth: 2,
+
+    })
+    var circle1_rad = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 50,
+        fill: 'red',
+        offset: {
+            x: 300,
+            y: 0
+        },
+        shadowColor: 'white',
+        shadowBlur: 100,
+        shadowOpacity: 0.7
+    })
+    var circle2_rad = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 30,
+        fill: 'pink',
+        offset: {
+            x: -200,
+            y: 0
+        },
+        shadowColor: 'white',
+        shadowBlur: 100,
+        shadowOpacity: 0.7
+    })
+    var circle3_rad = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 20,
+        fill: 'green',
+        offset: {
+            x: -100,
+            y: 0
+        },
+        shadowColor: 'white',
+        shadowBlur: 100,
+        shadowOpacity: 0.7,
+    })
+    var angularSpeed = 90;
+    var anim = new Konva.Animation(function(frame) {
+        var angleDiff = frame.timeDiff * angularSpeed / 1000;
+        circle1_rad.rotate(angleDiff);
+        circle2_rad.rotate(angleDiff);
+        circle3_rad.rotate(-angleDiff);
+
+
+
+    }, layer);
+
+    anim.start();
+
+
+    var circle2 = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 200,
+        stroke: '#ccc',
+        strokeWidth: 2,
+    })
+    var circle3 = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 100,
+        stroke: '#ccc',
+        strokeWidth: 2,
+    })
+    var circle4 = new Konva.Circle({
+        x: stage.getWidth() / 2,
+        y: stage.getHeight() / 2,
+        radius: 50,
+        fill: 'blue',
+        shadowColor: 'white',
+        shadowBlur: 100,
+        shadowOpacity: 1
+    })
+    var circle4_text = new Konva.Text({
+        x: stage.getWidth() / 2 - 22,
+        y: stage.getHeight() / 2 - 12,
+        text: 'Amz',
+        fontSize: 24,
+        fontFamily: 'Calibri',
+        fill: '#041F34'
+    })
+
+    //曲线画圆失败
+    // console.log(stage.getWidth() / 2)
+    // var blueLine = new Konva.Line({
+    //     points: [stage.getWidth() / 2 + 300, stage.getHeight() / 2 + 600],
+    //     stroke: 'blue',
+    //     strokeWidth: 10,
+    //     lineCap: 'round',
+    //     lineJoin: 'round',
+    //     dash: [29, 20, 0.001, 20]
+    // });
+    // blueLine.move({
+    //     x: 20,
+    //     y: 5,
+    // });
+
+    layer.add(circle1);
+    layer.add(circle1);
+    layer.add(circle2);
+    layer.add(circle3);
+    layer.add(circle4);
+    layer.add(circle4_text);
+    layer.add(circle1_rad);
+    layer.add(circle2_rad);
+    layer.add(circle3_rad);
+    // layer.add(blueLine);
+
+
+
+
+
+
+    stage.add(layer);
+</script>
+
+</html>
